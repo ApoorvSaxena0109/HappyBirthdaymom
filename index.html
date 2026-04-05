@@ -2,631 +2,386 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Maa - Manisha Srivastava</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Maa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;scroll-snap-type:y mandatory;overflow-x:hidden}
+        body{font-family:'Poppins',sans-serif;background:#1a0a2e;color:#fff;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #1a0a2e;
-            min-height: 100vh;
-            overflow-x: hidden;
-            color: #fff;
-        }
+        /* Full-screen sections */
+        .screen{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;position:relative;scroll-snap-align:start;overflow:hidden}
 
-        /* Floating hearts background */
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
+        /* Scroll reveal */
+        .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease}
+        .reveal.visible{opacity:1;transform:translateY(0)}
 
-        .heart {
-            position: absolute;
-            bottom: -50px;
-            font-size: 20px;
-            animation: floatUp linear infinite;
-            opacity: 0.6;
-        }
+        /* === SCREEN 1: Envelope === */
+        .envelope-screen{background:linear-gradient(135deg,#1a0a2e,#2d1b69)}
+        .envelope-wrap{text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+        .envelope{font-size:6rem;animation:wiggle 2s ease-in-out infinite;display:inline-block}
+        @keyframes wiggle{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+        .tap-text{color:#ffa751;font-size:0.9rem;letter-spacing:3px;text-transform:uppercase;margin-top:16px;animation:fadeInOut 2s ease-in-out infinite}
+        @keyframes fadeInOut{0%,100%{opacity:0.4}50%{opacity:1}}
+        .envelope-wrap.opened .envelope{animation:openEnvelope 0.6s ease forwards}
+        @keyframes openEnvelope{0%{transform:scale(1)}50%{transform:scale(1.3) rotate(10deg)}100%{transform:scale(0) rotate(20deg);opacity:0}}
+        .envelope-wrap.opened .tap-text{display:none}
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotate(0deg) scale(1);
-                opacity: 0.6;
-            }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-110vh) rotate(360deg) scale(0.5);
-                opacity: 0;
-            }
-        }
+        /* === SCREEN 2: Hero === */
+        .hero-screen{background:linear-gradient(180deg,#2d1b69,#1a0a2e)}
+        .cake{font-size:5rem;animation:bounce 2s ease-in-out infinite;display:inline-block}
+        @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+        .hero-title{font-family:'Great Vibes',cursive;font-size:3.2rem;background:linear-gradient(135deg,#ff6b9d,#ffa751,#ff6b9d);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite;margin:16px 0 8px;line-height:1.2;text-align:center}
+        @keyframes shimmer{0%{background-position:0% center}100%{background-position:200% center}}
+        .hero-date{color:#ffa751;font-size:0.85rem;letter-spacing:4px;text-transform:uppercase}
+        .hero-name{font-family:'Dancing Script',cursive;font-size:1.6rem;color:#ffd1dc;margin-top:12px}
+        .hero-badge{display:inline-block;background:linear-gradient(135deg,#ff6b9d,#c471ed);padding:5px 18px;border-radius:20px;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;margin-top:8px}
 
-        /* Glowing particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
+        /* === SCREEN 3: Cake with candles === */
+        .cake-screen{background:linear-gradient(180deg,#1a0a2e,#0d0520)}
+        .cake-display{text-align:center}
+        .cake-display h3{font-family:'Dancing Script',cursive;font-size:1.6rem;color:#ffa751;margin-bottom:20px}
+        .candles-row{display:flex;justify-content:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+        .candle{font-size:2.2rem;cursor:pointer;transition:transform 0.2s,filter 0.3s;animation:flicker 0.5s ease-in-out infinite alternate}
+        .candle.blown{filter:grayscale(1) brightness(0.4);animation:none;transform:scale(0.8)}
+        @keyframes flicker{0%{transform:scale(1) rotate(-2deg)}100%{transform:scale(1.05) rotate(2deg)}}
+        .big-cake{font-size:5rem;display:block;margin-top:-8px}
+        .blow-hint{color:rgba(255,255,255,0.5);font-size:0.8rem;margin-top:16px;transition:opacity 0.3s}
+        .blow-hint.hidden{opacity:0}
+        .cake-message{color:#ffd1dc;font-family:'Dancing Script',cursive;font-size:1.4rem;margin-top:16px;opacity:0;transition:opacity 0.5s}
+        .cake-message.show{opacity:1}
 
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 200, 100, 0.8);
-            border-radius: 50%;
-            animation: twinkle ease-in-out infinite;
-        }
+        /* === SCREEN 4: Letter with typewriter === */
+        .letter-screen{background:linear-gradient(180deg,#0d0520,#1a0a2e)}
+        .letter-card{background:linear-gradient(145deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02));border:1px solid rgba(255,107,157,0.15);border-radius:20px;padding:28px 22px;max-width:380px;width:100%}
+        .letter-card h3{font-family:'Dancing Script',cursive;font-size:1.6rem;color:#ffa751;text-align:center;margin-bottom:14px}
+        .typewriter{font-weight:300;line-height:1.9;color:rgba(255,255,255,0.85);font-size:0.95rem;min-height:160px}
+        .typewriter .cursor{display:inline-block;width:2px;height:1em;background:#ffa751;animation:blink 0.7s step-end infinite;vertical-align:text-bottom;margin-left:2px}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.5); }
-        }
+        /* === SCREEN 5: Reasons === */
+        .reasons-screen{background:linear-gradient(180deg,#1a0a2e,#2d1b69)}
+        .reasons-screen h3{font-family:'Dancing Script',cursive;font-size:1.6rem;color:#ffa751;text-align:center;margin-bottom:20px}
+        .reasons-list{display:flex;flex-direction:column;gap:12px;max-width:380px;width:100%}
+        .reason{background:linear-gradient(145deg,rgba(255,255,255,0.06),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px;cursor:pointer;transition:all 0.3s ease;overflow:hidden}
+        .reason .reason-header{display:flex;align-items:center;gap:10px}
+        .reason .reason-icon{font-size:1.5rem}
+        .reason .reason-title{font-size:0.95rem;color:#ff6b9d;font-weight:600}
+        .reason .reason-text{max-height:0;overflow:hidden;transition:max-height 0.4s ease,margin 0.4s ease,opacity 0.3s ease;opacity:0;font-size:0.85rem;color:rgba(255,255,255,0.65);font-weight:300;line-height:1.6}
+        .reason.open .reason-text{max-height:120px;margin-top:10px;opacity:1}
+        .reason.open{border-color:rgba(255,107,157,0.25);background:linear-gradient(145deg,rgba(255,107,157,0.08),rgba(196,113,237,0.05))}
 
-        /* Main content */
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        /* === SCREEN 6: Wish Lantern === */
+        .lantern-screen{background:linear-gradient(180deg,#0d0520,#030112)}
+        .lantern-area{text-align:center}
+        .lantern-area h3{font-family:'Dancing Script',cursive;font-size:1.6rem;color:#ffa751;margin-bottom:8px}
+        .lantern-area p{color:rgba(255,255,255,0.5);font-size:0.8rem;margin-bottom:24px}
+        .lantern-btn{background:linear-gradient(135deg,#ff6b9d,#c471ed);border:none;color:#fff;padding:14px 32px;border-radius:30px;font-family:'Poppins',sans-serif;font-size:0.9rem;letter-spacing:2px;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(255,107,157,0.3)}
+        .lantern-btn:active{transform:scale(0.95)}
+        .lantern{position:absolute;font-size:2.5rem;opacity:0;pointer-events:none}
+        @keyframes riseLantern{0%{opacity:0;transform:translateY(0) scale(0.5)}10%{opacity:1;transform:translateY(-10px) scale(1)}90%{opacity:0.8;transform:translateY(-85vh) scale(0.6)}100%{opacity:0;transform:translateY(-100vh) scale(0.3)}}
+        .stars{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+        .star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle ease-in-out infinite}
+        @keyframes twinkle{0%,100%{opacity:0.2}50%{opacity:1}}
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 60px 20px 40px;
-            animation: fadeInDown 1.2s ease-out;
-        }
+        /* === SCREEN 7: Final wish === */
+        .final-screen{background:linear-gradient(180deg,#030112,#1a0a2e)}
+        .final-heart{font-size:3.5rem;animation:heartbeat 1.5s ease-in-out infinite;display:inline-block}
+        @keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.2)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
+        .final-title{font-family:'Great Vibes',cursive;font-size:2.4rem;background:linear-gradient(135deg,#ff6b9d,#ffa751);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:12px 0;text-align:center;line-height:1.3}
+        .final-sub{font-weight:300;color:rgba(255,255,255,0.6);font-size:0.9rem;text-align:center;max-width:300px;line-height:1.7}
+        .final-quote{font-family:'Dancing Script',cursive;color:#ffd1dc;font-size:1.1rem;text-align:center;margin-top:24px;padding:0 10px;line-height:1.6}
+        .made-with{color:rgba(255,255,255,0.25);font-size:0.7rem;margin-top:30px}
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .cake-emoji {
-            font-size: 4rem;
-            animation: bounce 2s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .hero h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            background: linear-gradient(135deg, #ff6b9d, #ffa751, #ff6b9d);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3s linear infinite;
-            margin: 20px 0 10px;
-            line-height: 1.2;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        .hero .date {
-            font-size: 1.1rem;
-            color: #ffa751;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-top: 8px;
-        }
-
-        /* Divider */
-        .divider {
-            text-align: center;
-            margin: 30px 0;
-            animation: fadeIn 1.5s ease-out 0.5s both;
-        }
-
-        .divider span {
-            font-size: 1.5rem;
-            letter-spacing: 10px;
-            opacity: 0.5;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Profile Card */
-        .profile-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 107, 157, 0.2);
-            border-radius: 24px;
-            padding: 40px 30px;
-            text-align: center;
-            margin: 20px 0;
-            animation: fadeInUp 1s ease-out 0.3s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ff6b9d, #ffa751, #ff6b9d, #c471ed);
-            border-radius: 25px;
-            z-index: -1;
-            opacity: 0.3;
-            animation: borderGlow 4s ease-in-out infinite;
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 0.5; }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .profile-avatar {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #ff6b9d, #c471ed);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 3.5rem;
-            box-shadow: 0 10px 40px rgba(255, 107, 157, 0.3);
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 10px 40px rgba(255, 107, 157, 0.3); }
-            50% { box-shadow: 0 10px 60px rgba(255, 107, 157, 0.5); }
-        }
-
-        .profile-card h2 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.5rem;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .profile-card .title {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff6b9d, #c471ed);
-            padding: 6px 24px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Message Sections */
-        .message-section {
-            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 35px 30px;
-            margin: 25px 0;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .message-section h3 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            color: #ffa751;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-
-        .message-section p {
-            font-weight: 300;
-            line-height: 1.9;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 1.05rem;
-            text-align: center;
-        }
-
-        /* Qualities Section */
-        .qualities {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin: 25px 0;
-            animation: fadeInUp 1s ease-out 0.9s both;
-        }
-
-        .quality-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 24px 18px;
-            text-align: center;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .quality-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 107, 157, 0.3);
-        }
-
-        .quality-card .icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .quality-card h4 {
-            font-size: 1rem;
-            color: #ff6b9d;
-            margin-bottom: 6px;
-        }
-
-        .quality-card p {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 300;
-            line-height: 1.5;
-        }
-
-        /* Quote Section */
-        .quote-section {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(196, 113, 237, 0.15));
-            border: 1px solid rgba(255, 107, 157, 0.2);
-            border-radius: 20px;
-            padding: 40px 30px;
-            margin: 25px 0;
-            text-align: center;
-            animation: fadeInUp 1s ease-out 1.2s both;
-            position: relative;
-        }
-
-        .quote-section::before {
-            content: '\201C';
-            font-family: 'Great Vibes', cursive;
-            font-size: 6rem;
-            color: rgba(255, 107, 157, 0.2);
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            line-height: 1;
-        }
-
-        .quote-section p {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            line-height: 1.8;
-            color: #ffd1dc;
-        }
-
-        .quote-section .signature {
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9rem;
-            color: #ffa751;
-            margin-top: 20px;
-            letter-spacing: 2px;
-        }
-
-        /* Birthday Wish */
-        .birthday-wish {
-            text-align: center;
-            padding: 50px 20px;
-            animation: fadeInUp 1s ease-out 1.5s both;
-        }
-
-        .birthday-wish .big-heart {
-            font-size: 3rem;
-            animation: heartbeat 1.5s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            15% { transform: scale(1.15); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.1); }
-        }
-
-        .birthday-wish h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
-            background: linear-gradient(135deg, #ff6b9d, #ffa751);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 15px 0;
-        }
-
-        .birthday-wish p {
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1rem;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.8rem;
-            font-weight: 300;
-            animation: fadeIn 1s ease-out 2s both;
-        }
+        /* Floating hearts overlay */
+        .floating-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+        .float-heart{position:absolute;bottom:-40px;animation:floatUp linear infinite;opacity:0.4;font-size:16px}
+        @keyframes floatUp{0%{transform:translateY(0) rotate(0deg);opacity:0.4}50%{opacity:0.6}100%{transform:translateY(-110vh) rotate(360deg);opacity:0}}
 
         /* Confetti canvas */
-        #confetti-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 10;
-        }
+        #confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:50}
 
-        /* Mobile */
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            .profile-card h2 {
-                font-size: 2rem;
-            }
-            .qualities {
-                grid-template-columns: 1fr 1fr;
-            }
-            .quote-section p {
-                font-size: 1.2rem;
-            }
-            .birthday-wish h2 {
-                font-size: 2rem;
-            }
-        }
+        /* Scroll indicator */
+        .scroll-down{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.3);font-size:0.7rem;letter-spacing:2px;animation:fadeInOut 2s ease-in-out infinite;display:flex;flex-direction:column;align-items:center;gap:4px}
+        .scroll-arrow{font-size:1.2rem;animation:scrollBounce 1.5s ease-in-out infinite}
+        @keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
     </style>
 </head>
 <body>
 
-    <!-- Confetti on load -->
-    <canvas id="confetti-canvas"></canvas>
+<canvas id="confetti"></canvas>
+<div class="floating-bg" id="floatingBg"></div>
 
-    <!-- Floating hearts -->
-    <div class="floating-hearts" id="hearts"></div>
-
-    <!-- Glowing particles -->
-    <div class="particles" id="particles"></div>
-
-    <!-- Main Content -->
-    <div class="container">
-
-        <!-- Hero -->
-        <section class="hero">
-            <div class="cake-emoji">&#127874;</div>
-            <h1>Happy Birthday, Maa!</h1>
-            <p class="date">&#10024; 5th April &#10024;</p>
-        </section>
-
-        <div class="divider"><span>&#10045; &#10045; &#10045;</span></div>
-
-        <!-- Profile -->
-        <section class="profile-card">
-            <div class="profile-avatar">&#x1F469;&#x200D;&#x1F3EB;</div>
-            <h2>Manisha Srivastava</h2>
-            <div class="title">&#10024; Beloved Teacher &amp; Mother &#10024;</div>
-        </section>
-
-        <!-- Message -->
-        <section class="message-section">
-            <h3>&#128140; Dear Maa</h3>
-            <p>
-                You are the most amazing woman I know. As a teacher, you have shaped
-                the minds of so many students, but as a mother, you have shaped my
-                entire world. Every lesson you taught in the classroom and at home has
-                made me who I am today. Your patience, your warmth, your unconditional
-                love &mdash; these are the greatest gifts anyone could ever receive.
-            </p>
-        </section>
-
-        <!-- Qualities -->
-        <div class="qualities">
-            <div class="quality-card">
-                <span class="icon">&#128150;</span>
-                <h4>Loving</h4>
-                <p>Your love is the warmth that lights up our home every single day</p>
-            </div>
-            <div class="quality-card">
-                <span class="icon">&#128218;</span>
-                <h4>Wise Teacher</h4>
-                <p>You inspire students and your own children with equal passion</p>
-            </div>
-            <div class="quality-card">
-                <span class="icon">&#127807;</span>
-                <h4>Patient</h4>
-                <p>Your patience is endless, your kindness knows no bounds</p>
-            </div>
-            <div class="quality-card">
-                <span class="icon">&#11088;</span>
-                <h4>Inspiring</h4>
-                <p>You teach us not just with words, but by the way you live</p>
-            </div>
-            <div class="quality-card">
-                <span class="icon">&#127850;</span>
-                <h4>Caring</h4>
-                <p>From warm meals to warm hugs, you make everything feel like home</p>
-            </div>
-            <div class="quality-card">
-                <span class="icon">&#128170;</span>
-                <h4>Strong</h4>
-                <p>You carry the world on your shoulders and still smile for us</p>
-            </div>
-        </div>
-
-        <!-- Quote -->
-        <section class="quote-section">
-            <p>
-                A mother is your first teacher, your best friend, and your forever
-                guiding light. You are all of this and so much more, Maa.
-                Thank you for everything.
-            </p>
-            <div class="signature">&#8212; With all my love, your child &#10084;&#65039;</div>
-        </section>
-
-        <!-- Final Wish -->
-        <section class="birthday-wish">
-            <div class="big-heart">&#10084;&#65039;</div>
-            <h2>Wishing You the Happiest Birthday!</h2>
-            <p>May this year bring you all the joy, health, and love you deserve, Maa.</p>
-        </section>
-
-        <div class="footer">
-            Made with &#10084;&#65039; for the best Maa in the world &mdash; Manisha Srivastava
-        </div>
-
+<!-- SCREEN 1: Envelope -->
+<section class="screen envelope-screen" id="envelopeScreen">
+    <div class="envelope-wrap" id="envelope" role="button" aria-label="Tap to open">
+        <div class="envelope">&#x1F48C;</div>
+        <div class="tap-text">Tap to open</div>
     </div>
+</section>
 
-    <script>
-        // === Confetti Animation ===
-        (function() {
-            const canvas = document.getElementById('confetti-canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+<!-- SCREEN 2: Hero -->
+<section class="screen hero-screen" id="heroScreen">
+    <div class="reveal">
+        <div style="text-align:center">
+            <div class="cake">&#127874;</div>
+            <h1 class="hero-title">Happy Birthday, Maa!</h1>
+            <div class="hero-date">&#10024; 5th April &#10024;</div>
+            <div class="hero-name">Manisha Srivastava</div>
+            <div class="hero-badge">&#10024; Beloved Teacher &amp; Mother &#10024;</div>
+        </div>
+    </div>
+    <div class="scroll-down">swipe up<span class="scroll-arrow">&#8964;</span></div>
+</section>
 
-            const confettiColors = ['#ff6b9d', '#ffa751', '#c471ed', '#ffd1dc', '#fff', '#ff4081', '#e040fb'];
-            const confettiPieces = [];
+<!-- SCREEN 3: Cake & Candles -->
+<section class="screen cake-screen" id="cakeScreen">
+    <div class="reveal cake-display">
+        <h3>Make a Wish &amp; Blow the Candles!</h3>
+        <div class="candles-row" id="candlesRow"></div>
+        <div class="big-cake">&#127874;</div>
+        <div class="blow-hint" id="blowHint">Tap each candle to blow it out</div>
+        <div class="cake-message" id="cakeMsg">&#10024; May all your wishes come true, Maa! &#10024;</div>
+    </div>
+</section>
 
-            for (let i = 0; i < 150; i++) {
-                confettiPieces.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height - canvas.height,
-                    w: Math.random() * 10 + 5,
-                    h: Math.random() * 6 + 3,
-                    color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
-                    speed: Math.random() * 3 + 2,
-                    angle: Math.random() * Math.PI * 2,
-                    spin: (Math.random() - 0.5) * 0.1,
-                    drift: (Math.random() - 0.5) * 1.5,
-                    opacity: 1
-                });
-            }
+<!-- SCREEN 4: Letter -->
+<section class="screen letter-screen" id="letterScreen">
+    <div class="reveal letter-card">
+        <h3>&#128140; A Letter for You, Maa</h3>
+        <div class="typewriter" id="typewriter"><span class="cursor"></span></div>
+    </div>
+</section>
 
-            let frame = 0;
-            function animateConfetti() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                frame++;
+<!-- SCREEN 5: Reasons -->
+<section class="screen reasons-screen" id="reasonsScreen">
+    <div class="reveal">
+        <h3>Why You Are the Best Maa</h3>
+        <div class="reasons-list" id="reasonsList">
+            <div class="reason" data-index="0">
+                <div class="reason-header"><span class="reason-icon">&#128150;</span><span class="reason-title">Your Endless Love</span></div>
+                <div class="reason-text">No matter what, your love never wavers. You fill our home with warmth that no winter can ever take away.</div>
+            </div>
+            <div class="reason" data-index="1">
+                <div class="reason-header"><span class="reason-icon">&#128218;</span><span class="reason-title">The Greatest Teacher</span></div>
+                <div class="reason-text">You taught your students with dedication, but the most important lessons you taught were at home - kindness, honesty, and courage.</div>
+            </div>
+            <div class="reason" data-index="2">
+                <div class="reason-header"><span class="reason-icon">&#127850;</span><span class="reason-title">Your Magical Hands</span></div>
+                <div class="reason-text">From the food you cook to the way you fix everything - your hands have magic that makes our world a better place.</div>
+            </div>
+            <div class="reason" data-index="3">
+                <div class="reason-header"><span class="reason-icon">&#128170;</span><span class="reason-title">Your Strength</span></div>
+                <div class="reason-text">You carry the weight of the world and still smile for us. You are the strongest person we know, Maa.</div>
+            </div>
+            <div class="reason" data-index="4">
+                <div class="reason-header"><span class="reason-icon">&#127807;</span><span class="reason-title">Your Patience</span></div>
+                <div class="reason-text">Through every tantrum, every mistake, every difficult day - you stayed patient and held us close. Thank you, Maa.</div>
+            </div>
+            <div class="reason" data-index="5">
+                <div class="reason-header"><span class="reason-icon">&#11088;</span><span class="reason-title">Our Guiding Star</span></div>
+                <div class="reason-text">Whenever we felt lost, you were the light showing us the way. You always believed in us, even when we didn't.</div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                // Fade out confetti after 5 seconds (approx 300 frames)
-                const fadeStart = 250;
-                const fadeDuration = 150;
+<!-- SCREEN 6: Wish Lantern -->
+<section class="screen lantern-screen" id="lanternScreen">
+    <div class="stars" id="stars"></div>
+    <div class="reveal lantern-area">
+        <h3>Send a Wish to the Sky</h3>
+        <p>Release a lantern for Maa</p>
+        <button class="lantern-btn" id="lanternBtn">Release Lantern &#127982;</button>
+    </div>
+</section>
 
-                confettiPieces.forEach(p => {
-                    if (frame > fadeStart) {
-                        p.opacity = Math.max(0, 1 - (frame - fadeStart) / fadeDuration);
-                    }
+<!-- SCREEN 7: Final -->
+<section class="screen final-screen">
+    <div class="reveal" style="text-align:center">
+        <div class="final-heart">&#10084;&#65039;</div>
+        <h2 class="final-title">Happy Birthday, Maa!</h2>
+        <p class="final-sub">May this year bring you all the joy, health, love, and happiness you truly deserve.</p>
+        <p class="final-quote">"A mother is your first teacher, your best friend, and your forever guiding light. You are all of this and so much more."</p>
+        <div class="made-with">Made with &#10084;&#65039; for the best Maa in the world</div>
+    </div>
+</section>
 
-                    ctx.save();
-                    ctx.translate(p.x, p.y);
-                    ctx.rotate(p.angle);
-                    ctx.globalAlpha = p.opacity;
-                    ctx.fillStyle = p.color;
-                    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-                    ctx.restore();
+<script>
+// === Envelope open ===
+(function(){
+    const env = document.getElementById('envelope');
+    const screen = document.getElementById('envelopeScreen');
+    let opened = false;
+    env.addEventListener('click', function(){
+        if(opened) return;
+        opened = true;
+        env.classList.add('opened');
+        setTimeout(()=>{
+            screen.style.transition = 'opacity 0.5s';
+            screen.style.opacity = '0';
+            setTimeout(()=>{
+                screen.style.display = 'none';
+                document.getElementById('heroScreen').scrollIntoView({behavior:'smooth'});
+                launchConfetti();
+            },400);
+        },600);
+    });
+})();
 
-                    p.y += p.speed;
-                    p.x += p.drift;
-                    p.angle += p.spin;
+// === Confetti ===
+function launchConfetti(){
+    const c = document.getElementById('confetti');
+    const ctx = c.getContext('2d');
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+    const colors = ['#ff6b9d','#ffa751','#c471ed','#ffd1dc','#fff','#ff4081','#e040fb','#ffeb3b'];
+    const pieces = [];
+    for(let i=0;i<120;i++){
+        pieces.push({x:Math.random()*c.width,y:Math.random()*c.height-c.height,w:Math.random()*8+4,h:Math.random()*5+2,color:colors[Math.floor(Math.random()*colors.length)],speed:Math.random()*3+2,angle:Math.random()*Math.PI*2,spin:(Math.random()-0.5)*0.1,drift:(Math.random()-0.5)*1.5,opacity:1});
+    }
+    let frame=0;
+    function draw(){
+        ctx.clearRect(0,0,c.width,c.height);
+        frame++;
+        const fadeStart=200,fadeDur=120;
+        pieces.forEach(p=>{
+            if(frame>fadeStart)p.opacity=Math.max(0,1-(frame-fadeStart)/fadeDur);
+            ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.angle);ctx.globalAlpha=p.opacity;ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();
+            p.y+=p.speed;p.x+=p.drift;p.angle+=p.spin;
+            if(p.y>c.height+20){p.y=-20;p.x=Math.random()*c.width;}
+        });
+        if(frame<fadeStart+fadeDur)requestAnimationFrame(draw);
+        else ctx.clearRect(0,0,c.width,c.height);
+    }
+    draw();
+}
 
-                    if (p.y > canvas.height + 20) {
-                        p.y = -20;
-                        p.x = Math.random() * canvas.width;
-                    }
-                });
-
-                if (frame < fadeStart + fadeDuration) {
-                    requestAnimationFrame(animateConfetti);
-                } else {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+// === Candles ===
+(function(){
+    const row = document.getElementById('candlesRow');
+    const hint = document.getElementById('blowHint');
+    const msg = document.getElementById('cakeMsg');
+    let total = 7, blown = 0;
+    for(let i=0;i<total;i++){
+        const candle = document.createElement('span');
+        candle.className='candle';
+        candle.textContent='\u{1F56F}\uFE0F';
+        candle.addEventListener('click',function(){
+            if(!this.classList.contains('blown')){
+                this.classList.add('blown');
+                this.textContent='\u{1F4A8}';
+                blown++;
+                if(blown===total){
+                    hint.classList.add('hidden');
+                    msg.classList.add('show');
+                    launchConfetti();
                 }
             }
+        });
+        row.appendChild(candle);
+    }
+})();
 
-            animateConfetti();
-
-            window.addEventListener('resize', () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
-        })();
-
-        // === Floating Hearts ===
-        (function() {
-            const container = document.getElementById('hearts');
-            const heartEmojis = ['\u2764\uFE0F', '\uD83D\uDC95', '\uD83D\uDC96', '\uD83C\uDF39', '\uD83C\uDF3A', '\u2728', '\uD83E\uDDE1', '\uD83D\uDC9B'];
-
-            function createHeart() {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.fontSize = (Math.random() * 16 + 14) + 'px';
-                heart.style.animationDuration = (Math.random() * 8 + 8) + 's';
-                heart.style.animationDelay = Math.random() * 2 + 's';
-                container.appendChild(heart);
-
-                setTimeout(() => heart.remove(), 18000);
+// === Typewriter ===
+(function(){
+    const el = document.getElementById('typewriter');
+    const text = "Dear Maa,\n\nYou are the most amazing woman I know. As a teacher, you shaped the minds of hundreds of students. But as a mother, you shaped my entire world.\n\nEvery lesson you taught — in the classroom and at home — has made me who I am today.\n\nYour patience, your warmth, your unconditional love — these are the greatest gifts anyone could ever receive.\n\nI am so proud to be your child.\n\nHappy Birthday, Maa. I love you more than words can ever say.";
+    let i=0, started=false;
+    function type(){
+        if(i<text.length){
+            const char = text[i];
+            if(char==='\n'){
+                el.insertBefore(document.createElement('br'),el.querySelector('.cursor'));
+            } else {
+                el.insertBefore(document.createTextNode(char),el.querySelector('.cursor'));
             }
+            i++;
+            const delay = char==='.'||char===','||char==='\n' ? 80 : 25;
+            setTimeout(type,delay);
+        } else {
+            const cursor = el.querySelector('.cursor');
+            if(cursor) setTimeout(()=>cursor.style.display='none',2000);
+        }
+    }
+    const observer = new IntersectionObserver((entries)=>{
+        if(entries[0].isIntersecting && !started){
+            started=true;
+            type();
+        }
+    },{threshold:0.5});
+    observer.observe(document.getElementById('letterScreen'));
+})();
 
-            // Create initial batch
-            for (let i = 0; i < 12; i++) {
-                setTimeout(createHeart, i * 400);
-            }
+// === Reasons toggle ===
+document.querySelectorAll('.reason').forEach(r=>{
+    r.addEventListener('click',function(){
+        const wasOpen = this.classList.contains('open');
+        document.querySelectorAll('.reason').forEach(x=>x.classList.remove('open'));
+        if(!wasOpen) this.classList.add('open');
+    });
+});
 
-            // Continuously add hearts
-            setInterval(createHeart, 1500);
-        })();
+// === Stars ===
+(function(){
+    const container = document.getElementById('stars');
+    for(let i=0;i<60;i++){
+        const s = document.createElement('div');
+        s.className='star';
+        s.style.left=Math.random()*100+'%';
+        s.style.top=Math.random()*100+'%';
+        s.style.animationDuration=(Math.random()*3+2)+'s';
+        s.style.animationDelay=Math.random()*3+'s';
+        container.appendChild(s);
+    }
+})();
 
-        // === Twinkling Particles ===
-        (function() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 40; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                particle.style.animationDelay = Math.random() * 3 + 's';
-                container.appendChild(particle);
-            }
-        })();
-    </script>
+// === Lanterns ===
+(function(){
+    const btn = document.getElementById('lanternBtn');
+    const screen = document.getElementById('lanternScreen');
+    btn.addEventListener('click',function(){
+        const lantern = document.createElement('div');
+        lantern.className='lantern';
+        lantern.textContent='\u{1F3EE}';
+        lantern.style.left = (30 + Math.random()*40) + '%';
+        lantern.style.bottom = '30%';
+        lantern.style.animation = 'riseLantern 5s ease-out forwards';
+        screen.appendChild(lantern);
+        setTimeout(()=>lantern.remove(),5500);
+    });
+})();
 
+// === Floating hearts background ===
+(function(){
+    const c = document.getElementById('floatingBg');
+    const emojis = ['\u2764\uFE0F','\uD83D\uDC95','\uD83D\uDC96','\uD83C\uDF39','\u2728'];
+    function add(){
+        const h = document.createElement('div');
+        h.className='float-heart';
+        h.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+        h.style.left=Math.random()*100+'%';
+        h.style.fontSize=(Math.random()*10+12)+'px';
+        h.style.animationDuration=(Math.random()*8+10)+'s';
+        c.appendChild(h);
+        setTimeout(()=>h.remove(),20000);
+    }
+    for(let i=0;i<8;i++) setTimeout(add,i*500);
+    setInterval(add,2000);
+})();
+
+// === Scroll reveal ===
+(function(){
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+    },{threshold:0.2});
+    reveals.forEach(r=>obs.observe(r));
+})();
+
+// Resize confetti canvas
+window.addEventListener('resize',()=>{const c=document.getElementById('confetti');c.width=window.innerWidth;c.height=window.innerHeight});
+</script>
 </body>
 </html>
