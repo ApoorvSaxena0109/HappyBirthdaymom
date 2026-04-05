@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Mom - Manisha Srivastava</title>
+    <title>Happy Birthday Maa - Manisha Srivastava</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,148 +13,620 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #fce4ec, #f3e5f5, #e8eaf6);
+            font-family: 'Poppins', sans-serif;
+            background: #1a0a2e;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            overflow-x: hidden;
+            color: #fff;
         }
 
-        .card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            max-width: 600px;
+        /* Floating hearts background */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
             overflow: hidden;
         }
 
-        .card-header {
-            background: linear-gradient(135deg, #e91e63, #9c27b0);
-            color: white;
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 20px;
+            animation: floatUp linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Glowing particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 200, 100, 0.8);
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Main content */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
             text-align: center;
-            padding: 40px 30px;
+            padding: 60px 20px 40px;
+            animation: fadeInDown 1.2s ease-out;
         }
 
-        .card-header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .card-header p {
+        .cake-emoji {
+            font-size: 4rem;
+            animation: bounce 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            background: linear-gradient(135deg, #ff6b9d, #ffa751, #ff6b9d);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            margin: 20px 0 10px;
+            line-height: 1.2;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .hero .date {
             font-size: 1.1rem;
-            opacity: 0.9;
+            color: #ffa751;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 8px;
         }
 
-        .profile {
+        /* Divider */
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            animation: fadeIn 1.5s ease-out 0.5s both;
+        }
+
+        .divider span {
+            font-size: 1.5rem;
+            letter-spacing: 10px;
+            opacity: 0.5;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 107, 157, 0.2);
+            border-radius: 24px;
             padding: 40px 30px;
             text-align: center;
+            margin: 20px 0;
+            animation: fadeInUp 1s ease-out 0.3s both;
+            position: relative;
+            overflow: hidden;
         }
 
-        .profile-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #e91e63, #9c27b0);
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b9d, #ffa751, #ff6b9d, #c471ed);
+            border-radius: 25px;
+            z-index: -1;
+            opacity: 0.3;
+            animation: borderGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ff6b9d, #c471ed);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
+            font-size: 3.5rem;
+            box-shadow: 0 10px 40px rgba(255, 107, 157, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 10px 40px rgba(255, 107, 157, 0.3); }
+            50% { box-shadow: 0 10px 60px rgba(255, 107, 157, 0.5); }
+        }
+
+        .profile-card h2 {
+            font-family: 'Dancing Script', cursive;
             font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 8px;
         }
 
-        .profile h2 {
-            font-size: 1.8rem;
-            color: #333;
-            margin-bottom: 6px;
-        }
-
-        .profile .role {
+        .profile-card .title {
             display: inline-block;
-            background: linear-gradient(135deg, #e91e63, #9c27b0);
-            color: white;
-            padding: 6px 20px;
+            background: linear-gradient(135deg, #ff6b9d, #c471ed);
+            padding: 6px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Message Sections */
+        .message-section {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
-            font-size: 0.95rem;
-            margin-bottom: 24px;
+            padding: 35px 30px;
+            margin: 25px 0;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
-        .details {
-            text-align: left;
-            padding: 0 10px;
-        }
-
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .detail-row:last-child {
-            border-bottom: none;
-        }
-
-        .detail-label {
-            color: #888;
-            font-size: 0.95rem;
-        }
-
-        .detail-value {
-            color: #333;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .message {
-            background: #fce4ec;
-            margin: 20px 30px 30px;
-            padding: 24px;
-            border-radius: 12px;
+        .message-section h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #ffa751;
+            margin-bottom: 16px;
             text-align: center;
         }
 
-        .message p {
-            color: #c2185b;
+        .message-section p {
+            font-weight: 300;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.85);
             font-size: 1.05rem;
-            line-height: 1.6;
-            font-style: italic;
+            text-align: center;
+        }
+
+        /* Qualities Section */
+        .qualities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 25px 0;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .quality-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px 18px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .quality-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 157, 0.3);
+        }
+
+        .quality-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .quality-card h4 {
+            font-size: 1rem;
+            color: #ff6b9d;
+            margin-bottom: 6px;
+        }
+
+        .quality-card p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(196, 113, 237, 0.15));
+            border: 1px solid rgba(255, 107, 157, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin: 25px 0;
+            text-align: center;
+            animation: fadeInUp 1s ease-out 1.2s both;
+            position: relative;
+        }
+
+        .quote-section::before {
+            content: '\201C';
+            font-family: 'Great Vibes', cursive;
+            font-size: 6rem;
+            color: rgba(255, 107, 157, 0.2);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .quote-section p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: #ffd1dc;
+        }
+
+        .quote-section .signature {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: #ffa751;
+            margin-top: 20px;
+            letter-spacing: 2px;
+        }
+
+        /* Birthday Wish */
+        .birthday-wish {
+            text-align: center;
+            padding: 50px 20px;
+            animation: fadeInUp 1s ease-out 1.5s both;
+        }
+
+        .birthday-wish .big-heart {
+            font-size: 3rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.15); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+        }
+
+        .birthday-wish h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #ff6b9d, #ffa751);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 15px 0;
+        }
+
+        .birthday-wish p {
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            font-weight: 300;
+            animation: fadeIn 1s ease-out 2s both;
+        }
+
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .profile-card h2 {
+                font-size: 2rem;
+            }
+            .qualities {
+                grid-template-columns: 1fr 1fr;
+            }
+            .quote-section p {
+                font-size: 1.2rem;
+            }
+            .birthday-wish h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="card-header">
-            <h1>Happy Birthday, Mom!</h1>
-            <p>A tribute to the most amazing teacher and mother</p>
-        </div>
 
-        <div class="profile">
-            <div class="profile-icon">&#x1F469;&#x200D;&#x1F3EB;</div>
+    <!-- Confetti on load -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Floating hearts -->
+    <div class="floating-hearts" id="hearts"></div>
+
+    <!-- Glowing particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="cake-emoji">&#127874;</div>
+            <h1>Happy Birthday, Maa!</h1>
+            <p class="date">&#10024; 5th April &#10024;</p>
+        </section>
+
+        <div class="divider"><span>&#10045; &#10045; &#10045;</span></div>
+
+        <!-- Profile -->
+        <section class="profile-card">
+            <div class="profile-avatar">&#x1F469;&#x200D;&#x1F3EB;</div>
             <h2>Manisha Srivastava</h2>
-            <span class="role">Teacher</span>
+            <div class="title">&#10024; Beloved Teacher &amp; Mother &#10024;</div>
+        </section>
 
-            <div class="details">
-                <div class="detail-row">
-                    <span class="detail-label">Name</span>
-                    <span class="detail-value">Manisha Srivastava</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Profession</span>
-                    <span class="detail-value">Teacher</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Role</span>
-                    <span class="detail-value">Educator &amp; Mother</span>
-                </div>
+        <!-- Message -->
+        <section class="message-section">
+            <h3>&#128140; Dear Maa</h3>
+            <p>
+                You are the most amazing woman I know. As a teacher, you have shaped
+                the minds of so many students, but as a mother, you have shaped my
+                entire world. Every lesson you taught in the classroom and at home has
+                made me who I am today. Your patience, your warmth, your unconditional
+                love &mdash; these are the greatest gifts anyone could ever receive.
+            </p>
+        </section>
+
+        <!-- Qualities -->
+        <div class="qualities">
+            <div class="quality-card">
+                <span class="icon">&#128150;</span>
+                <h4>Loving</h4>
+                <p>Your love is the warmth that lights up our home every single day</p>
+            </div>
+            <div class="quality-card">
+                <span class="icon">&#128218;</span>
+                <h4>Wise Teacher</h4>
+                <p>You inspire students and your own children with equal passion</p>
+            </div>
+            <div class="quality-card">
+                <span class="icon">&#127807;</span>
+                <h4>Patient</h4>
+                <p>Your patience is endless, your kindness knows no bounds</p>
+            </div>
+            <div class="quality-card">
+                <span class="icon">&#11088;</span>
+                <h4>Inspiring</h4>
+                <p>You teach us not just with words, but by the way you live</p>
+            </div>
+            <div class="quality-card">
+                <span class="icon">&#127850;</span>
+                <h4>Caring</h4>
+                <p>From warm meals to warm hugs, you make everything feel like home</p>
+            </div>
+            <div class="quality-card">
+                <span class="icon">&#128170;</span>
+                <h4>Strong</h4>
+                <p>You carry the world on your shoulders and still smile for us</p>
             </div>
         </div>
 
-        <div class="message">
-            <p>"A mother is your first teacher, and the best teacher you'll ever have. Happy Birthday to ours!"</p>
+        <!-- Quote -->
+        <section class="quote-section">
+            <p>
+                A mother is your first teacher, your best friend, and your forever
+                guiding light. You are all of this and so much more, Maa.
+                Thank you for everything.
+            </p>
+            <div class="signature">&#8212; With all my love, your child &#10084;&#65039;</div>
+        </section>
+
+        <!-- Final Wish -->
+        <section class="birthday-wish">
+            <div class="big-heart">&#10084;&#65039;</div>
+            <h2>Wishing You the Happiest Birthday!</h2>
+            <p>May this year bring you all the joy, health, and love you deserve, Maa.</p>
+        </section>
+
+        <div class="footer">
+            Made with &#10084;&#65039; for the best Maa in the world &mdash; Manisha Srivastava
         </div>
+
     </div>
+
+    <script>
+        // === Confetti Animation ===
+        (function() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const confettiColors = ['#ff6b9d', '#ffa751', '#c471ed', '#ffd1dc', '#fff', '#ff4081', '#e040fb'];
+            const confettiPieces = [];
+
+            for (let i = 0; i < 150; i++) {
+                confettiPieces.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    w: Math.random() * 10 + 5,
+                    h: Math.random() * 6 + 3,
+                    color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+                    speed: Math.random() * 3 + 2,
+                    angle: Math.random() * Math.PI * 2,
+                    spin: (Math.random() - 0.5) * 0.1,
+                    drift: (Math.random() - 0.5) * 1.5,
+                    opacity: 1
+                });
+            }
+
+            let frame = 0;
+            function animateConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                frame++;
+
+                // Fade out confetti after 5 seconds (approx 300 frames)
+                const fadeStart = 250;
+                const fadeDuration = 150;
+
+                confettiPieces.forEach(p => {
+                    if (frame > fadeStart) {
+                        p.opacity = Math.max(0, 1 - (frame - fadeStart) / fadeDuration);
+                    }
+
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.angle);
+                    ctx.globalAlpha = p.opacity;
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                    ctx.restore();
+
+                    p.y += p.speed;
+                    p.x += p.drift;
+                    p.angle += p.spin;
+
+                    if (p.y > canvas.height + 20) {
+                        p.y = -20;
+                        p.x = Math.random() * canvas.width;
+                    }
+                });
+
+                if (frame < fadeStart + fadeDuration) {
+                    requestAnimationFrame(animateConfetti);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+
+            animateConfetti();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        })();
+
+        // === Floating Hearts ===
+        (function() {
+            const container = document.getElementById('hearts');
+            const heartEmojis = ['\u2764\uFE0F', '\uD83D\uDC95', '\uD83D\uDC96', '\uD83C\uDF39', '\uD83C\uDF3A', '\u2728', '\uD83E\uDDE1', '\uD83D\uDC9B'];
+
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = (Math.random() * 16 + 14) + 'px';
+                heart.style.animationDuration = (Math.random() * 8 + 8) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 18000);
+            }
+
+            // Create initial batch
+            for (let i = 0; i < 12; i++) {
+                setTimeout(createHeart, i * 400);
+            }
+
+            // Continuously add hearts
+            setInterval(createHeart, 1500);
+        })();
+
+        // === Twinkling Particles ===
+        (function() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(particle);
+            }
+        })();
+    </script>
+
 </body>
 </html>
